@@ -16,6 +16,28 @@ def load_image(path2pic, verbose):
     return img
 
 
+def split_channels(imgIn, show):
+    name = imgIn.split('/').pop()
+    imgIn = plt.imread(imgIn)
+    channels = {'c1': imgIn[:, :, 0],
+                'c2': imgIn[:, :, 1],
+                'c3': imgIn[:, :, 2],
+                'label': name}
+    if show:
+        f, ax = plt.subplots(1, 4, figsize=(12, 5), sharex=True, sharey=True)
+        plt.title(name)
+        ax[0].imshow(imgIn[:, :, 0])
+        ax[0].set_title(name + ' CH1')
+        ax[1].imshow(imgIn[:, :, 1])
+        ax[1].set_title(name + ' CH2')
+        ax[2].imshow(imgIn[:, :, 2])
+        ax[2].set_title(name + ' CH3')
+        ax[3].imshow(imgIn[:, :, 1], 'gray')
+        ax[3].set_title(name + ' CH1 [Gray]')
+        plt.show()
+    return channels
+
+
 def render_bw(matrices, frame_rate):
     """
     Render the given matrices one by one,
@@ -95,11 +117,15 @@ def spawn_random_point(state):
     return [x, y]
 
 
-def render_image(imat, title):
-    f = plt.figure()
-    plt.imshow(imat, 'gray_r')
-    plt.title(title)
-    plt.show()
+def render_image(imat, title, color):
+    if not color:
+        plt.imshow(imat, 'gray')
+        plt.title(title)
+        plt.show()
+    else:
+        plt.imshow(imat)
+        plt.title(title)
+        plt.show()
 
 
 def draw_centered_box(canvas, box_size, show):
@@ -134,7 +160,7 @@ def crop(canvas, area, show):
     x2 = area['x2']
     y1 = area['y1']
     y2 = area['y2']
-    region = canvas[x1:x2,y1:y2]
+    region = canvas[y1:y2, x1:x2]
     if show:
         f, ax = plt.subplots(1,2,sharey=False)
         ax[0].imshow(canvas, 'gray_r')
