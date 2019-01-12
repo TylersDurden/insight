@@ -1,5 +1,33 @@
 import matplotlib.pyplot as plt, matplotlib.animation as animation
-import numpy as np, scipy.ndimage as ndi, imutils
+import numpy as np, scipy.ndimage as ndi, imutils, sys
+
+
+def gray_experiment():
+    f = plt.figure()
+    plt.title('Fade To Black')
+    graydient = []
+    N = 80
+    for i in range(N):
+        npts = 70 * N
+        for i in range(npts):
+            pt = imutils.spawn_random_point(imutils.crop(box, A1, False))
+            box[pt[0], pt[1]] = 1
+        graydient.append([plt.imshow(ndi.convolve(box, lens), 'gray_r')])
+    a = animation.ArtistAnimation(f, graydient, interval=70, blit=True, repeat_delay=900)
+    plt.show()
+    box1 = imutils.draw_centered_box(state_2, 200, False)
+    f = plt.figure()
+    plt.title('Fade To Black')
+    graydient = []
+    N = 90
+    for i in range(N):
+        npts = 25 * N
+        for i in range(npts):
+            pt = imutils.spawn_random_point(imutils.crop(box1, A1, False))
+            box1[pt[0], pt[1]] = 1
+        graydient.append([plt.imshow(ndi.convolve(box1, lens), 'gray_r')])
+    a = animation.ArtistAnimation(f, graydient, interval=80, blit=True, repeat_delay=900)
+    plt.show()
 
 
 def main():
@@ -23,38 +51,19 @@ def main():
           'y1': 150,
           'y2': 300}
 
-
     lens = [[1,2,1,2,1],
             [2,1,1,1,2],
             [1,1,1,1,1],
             [2,1,1,1,2],
             [1,2,1,2,1]]
 
-    f = plt.figure()
-    plt.title('Fade To Black')
-    graydient = []
-    N = 90
-    for i in range(N):
-        npts = 10*N
-        for i in range(npts):
-            pt = imutils.spawn_random_point(imutils.crop(box, A1,False))
-            box[pt[0], pt[1]] = 1
-        graydient.append([plt.imshow(ndi.convolve(box,lens), 'gray_r')])
-    a = animation.ArtistAnimation(f,graydient,interval=80,blit=True,repeat_delay=900)
-    plt.show()
-    box1 = imutils.draw_centered_box(state_2, 100, False)
-    f = plt.figure()
-    plt.title('Fade To Black')
-    graydient = []
-    N = 90
-    for i in range(N):
-        npts = 25 * N
-        for i in range(npts):
-            pt = imutils.spawn_random_point(imutils.crop(box1, A1, False))
-            box1[pt[0], pt[1]] = 1
-        graydient.append([plt.imshow(ndi.convolve(box1, lens), 'gray_r')])
-    a = animation.ArtistAnimation(f, graydient, interval=80, blit=True, repeat_delay=900)
-    plt.show()
+    if 'test' in sys.argv:
+        gray_experiment()
+
+    part = imutils.crop(box,A1,False)
+    segment = imutils.add_grid(part,10,True)
+    
+
 
 
 if __name__ == '__main__':
