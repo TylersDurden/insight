@@ -221,3 +221,33 @@ def create_square_lattice(box_sz, dims, layout, show):
     return state
 
 
+def draw_centered_circle(canvas, radius, show):
+    cx = canvas.shape[0]/2
+    cy = canvas.shape[1]/2
+    for x in np.arange(cx - radius, cx + radius, 1):
+        for y in np.arange(cy - radius, cy + radius, 1):
+            r =np.sqrt((x-cx)*(x-cx) + ((cy-y)*(cy-y)))
+
+            if r <= radius:
+                canvas[x, y] = 1
+    if show:
+        plt.imshow(canvas, 'gray_r')
+        plt.show()
+    return canvas
+
+
+def add_grid(canvas, divisions, show):
+    width = canvas.shape[0]
+    height = canvas.shape[1]
+
+    x_grid = np.arange(0, width, divisions)
+    y_grid = np.arange(0, height, divisions)
+    for x in x_grid:
+        canvas[x,:] = 1
+    for y in y_grid:
+        canvas[:,y] = 1
+    if show:
+        plt.imshow(canvas, 'gray_r')
+        plt.show()
+    return canvas
+
