@@ -142,16 +142,16 @@ def crop(canvas, area, show):
         ax[1].imshow(region, 'gray_r')
         ax[1].set_title('Cropped')
         plt.show()
-    return canvas
+    return region
 
 
 def define_area():
-    print "-----| DEFINE {0,x1,0,x2} |-----"
+    print "-----| DEFINE {x1,x2,y1,y2} |-----"
     x1 = int(input('Enter x1: '))
     x2 = int(input('Enter x2: '))
     y1 = int(input('Enter y1: '))
     y2 = int(input('Enter y2: '))
-    print "--------------------------------"
+    print "----------------------------------"
     bounds = {'x1': x1,
               'x2': x2,
               'y1': y1,
