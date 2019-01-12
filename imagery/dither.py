@@ -10,7 +10,7 @@ def view_channel(img_channels, which):
 
 def main():
     Verbose = False
-    
+
     # If operating on an existing image, load it from arguments and process data
     if 'pic' in sys.argv:
         color_chanels = imutils.split_channels(sys.argv[2], False)
