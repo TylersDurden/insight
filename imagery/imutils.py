@@ -101,3 +101,123 @@ def render_image(imat, title):
     plt.title(title)
     plt.show()
 
+
+def draw_centered_box(canvas, box_size, show):
+    cx = canvas.shape[0]/2
+    cy = canvas.shape[1]/2
+    canvas[cx-box_size:cx+box_size,
+           cy-box_size:cy+box_size] = 1
+    if show:
+        plt.figure()
+        plt.imshow(canvas, 'gray_r')
+        plt.title('Box')
+        plt.show()
+    return canvas
+
+
+def draw_box(box_data, canvas, show):
+    x1 = box_data['x1']
+    x2 = box_data['x2']
+    y1 = box_data['y1']
+    y2 = box_data['y2']
+    canvas[x1:x2,y1:y2] = 1
+    if show:
+        f = plt.figure()
+        plt.imshow(canvas, 'gray_r')
+        plt.title(' Canvas ')
+        plt.show()
+    return canvas
+
+
+def crop(canvas, area, show):
+    x1 = area['x1']
+    x2 = area['x2']
+    y1 = area['y1']
+    y2 = area['y2']
+    region = canvas[x1:x2,y1:y2]
+    if show:
+        f, ax = plt.subplots(1,2,sharey=False)
+        ax[0].imshow(canvas, 'gray_r')
+        ax[0].set_title('Original')
+        ax[1].imshow(region, 'gray_r')
+        ax[1].set_title('Cropped')
+        plt.show()
+    return canvas
+
+
+def define_area():
+    print "-----| DEFINE {0,x1,0,x2} |-----"
+    x1 = int(input('Enter x1: '))
+    x2 = int(input('Enter x2: '))
+    y1 = int(input('Enter y1: '))
+    y2 = int(input('Enter y2: '))
+    print "--------------------------------"
+    bounds = {'x1': x1,
+              'x2': x2,
+              'y1': y1,
+              'y2': y2}
+    return bounds
+
+
+def scale_box(self, factor, verbose):
+    """
+    Take a [Shape].box primitive, and
+    scale it up by the factor given.
+    If verbose, show the box before and after.
+    :param factor:
+    :param verbose:
+    :return:
+    """
+    # Take the small box primitive and scale it
+    box = np.array(self.hardcoded_shapes['box'])
+    current_box_dims = [int(np.sqrt(box.sum())),
+                        int(np.sqrt(box.sum()))]
+    # Define new box dimensions before white padding
+    new_dims = [int(factor * current_box_dims[0]),
+                int(factor * current_box_dims[0])]
+    newbox = np.ones(new_dims)
+    # Add the white space padding around the box
+    row_padding = np.zeros((1, new_dims[0] + 2))
+    col_padding = np.zeros((new_dims[1], 1))
+    newbox = np.concatenate((col_padding, newbox, col_padding), 1)
+    newbox = np.concatenate((row_padding, newbox, row_padding), 0)
+    # If verbose, show the box
+    if verbose:
+        print "Box Dims: " + str(current_box_dims) + \
+              "  [" + str(box.shape) + "]"
+        print "New Box Dims: " + str(new_dims) + \
+              "  [" + str(newbox.shape) + "]"
+
+        f, ax = plt.subplots(1, 2)
+        ax[0].imshow(box, 'gray_r')
+        ax[1].imshow(newbox, 'gray_r')
+        plt.show()
+    return newbox
+
+
+def create_square_lattice(box_sz, dims, layout, show):
+    """
+    Create a grid of square boxes with the given layout
+    I.E [4x4] yields a grid of 4 boxes by 4 boxes.
+    :param box_sz:
+    :param dims:
+    :param layout:
+    :param show:
+    :return state:
+    """
+    state = np.zeros(dims)
+    nr = state.shape[0] / layout[0]
+    nc = state.shape[1] / layout[1]
+
+    row_size = np.arange(2 * box_sz, state.shape[0] + 2 * box_sz, nr)
+    col_size = np.arange(2 * box_sz, state.shape[1] + 2 * box_sz, nc)
+
+    for i in row_size:
+        for j in col_size:
+            state[i - box_sz:i + box_sz, j - box_sz:j + box_sz] = 1
+    if show:
+        plt.imshow(state, 'gray_r')
+        plt.show()
+    return state
+
+
