@@ -38,10 +38,10 @@ def create_alphabet_scrapbook():
     LETTERS = {'A': A, 'B': B, 'C': C, 'D': D,
                'E': E, 'F': F, 'G': G, 'H': H,
                'I': I, 'J': J, 'K': K, 'L': L,
-               'M': N, 'O': O, 'P': P, 'Q': Q,
-               'R': R, 'S': S, 'T': T, 'U': U,
-               'V': V, 'W': W, 'X': X, 'Y': Y,
-               'Z': Z,
+               'M': M, 'N': N, 'O': O, 'P': P,
+               'Q': Q, 'R': R, 'S': S, 'T': T,
+               'U': U, 'V': V, 'W': W, 'X': X,
+               'Y': Y, 'Z': Z,
                ' ': SP}
     return LETTERS
 
@@ -57,11 +57,9 @@ def spell_word(word, Letters, show):
         if str(element).upper() in Letters.keys():
             try:
                 alpha = Letters[str(element).upper()]
-                # sample.append([plt.imshow(alpha, 'gray_r')])
                 sizes.append(alpha)
                 dx += alpha.shape[0]
                 dy += alpha.shape[1]
-                print alpha.shape
             except KeyError:
                 print "Unknown Character "+str(element).upper()+" !"
     x = 1
