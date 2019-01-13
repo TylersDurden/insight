@@ -1,5 +1,19 @@
 import matplotlib.pyplot as plt, matplotlib.animation as animation
-import numpy as np
+import numpy as np, os
+
+
+def swap(fname, destroy):
+    data = []
+    for line in open(fname, 'r').readlines():
+        data.append(line.replace('\n', ''))
+    if destroy:
+        os.remove(fname)
+    return data
+
+
+def pwd():
+    os.system('echo $PWD >> pwd.txt')
+    return swap('pwd.txt', True).pop()
 
 
 def load_image(path2pic, verbose):
