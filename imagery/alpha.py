@@ -34,7 +34,7 @@ def create_alphabet_scrapbook():
     X = alphas[27:50, 267:283, 1]
     Y = alphas[27:50, 294:310, 1]
     Z = alphas[27:50, 319:335, 1]
-    SP = np.ones(Z.shape)
+    SP = np.zeros(Z.shape)
     LETTERS = {'A': A, 'B': B, 'C': C, 'D': D,
                'E': E, 'F': F, 'G': G, 'H': H,
                'I': I, 'J': J, 'K': K, 'L': L,
@@ -46,27 +46,53 @@ def create_alphabet_scrapbook():
     return LETTERS
 
 
-def spell_word(word,Letters, show):
+def spell_word(word, Letters, show):
+    padding = 10
     f = plt.figure()
     sample = []
+    sizes = []
+    dx = 0
+    dy = 0
     for element in list(word):
         if str(element).upper() in Letters.keys():
-            alpha = Letters[str(element).upper()]
-            sample.append([plt.imshow(alpha, 'gray_r')])
-            print alpha.shape
-        elif element == ' ':
-            print "Adding _"
-            sample.append([plt.imshow(Letters['SP'], 'gray_r')])
-            print Letters['SP'].shape
+            try:
+                alpha = Letters[str(element).upper()]
+                # sample.append([plt.imshow(alpha, 'gray_r')])
+                sizes.append(alpha)
+                dx += alpha.shape[0]
+                dy += alpha.shape[1]
+                print alpha.shape
+            except KeyError:
+                print "Unknown Character "+str(element).upper()+" !"
+    x = 1
+    y = 1
+    word = np.zeros((50, dy + padding))
+    print "* Creating Word with shape " + str(word.shape)
+    for frame in sizes:
+        dX = np.array(frame.shape[0])
+        dY = np.array(frame.shape[1])
+        try:
+            word[padding+x: x + dX+padding, y: y + dY] = np.array(frame)
+            sample.append([plt.imshow(word, 'gray_r')])
+        except ValueError:
+            pass
+        # x += dX
+        y += dY
     if show:
-        a = animation.ArtistAnimation(f,sample,interval=800,blit=True,repeat_delay=900)
+        a = animation.ArtistAnimation(f,sample,interval=500,blit=True,repeat_delay=900)
+        plt.imshow(word,'gray')
         plt.show()
     return sample
 
 
 def main():
     Letters = create_alphabet_scrapbook()
-    spell_word('Hello World!', Letters, True)
+
+    if 'example' in sys.argv:
+        word = spell_word('Hello World', Letters, True)
+
+    if 'input' in sys.argv:
+        word = spell_word(str(input('Enter Some Text: ')), Letters, True)
 
 
 if __name__ == '__main__':
