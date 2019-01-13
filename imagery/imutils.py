@@ -12,8 +12,7 @@ def swap(fname, destroy):
 
 
 def pwd():
-    os.system('echo $PWD >> pwd.txt')
-    return swap('pwd.txt', True).pop()
+    return os.getcwd()
 
 
 def load_image(path2pic, verbose):
