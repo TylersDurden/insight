@@ -10,6 +10,7 @@ This library of useful image related functions covers quite a lot of utilities t
 makes later programming much more concise. Here's an overview of what imutils holds:
  ________________________
  [**draw_centered_box**] 
+ 
 -------------------------
  [**draw_grid**]         
 ------------------------

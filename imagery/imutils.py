@@ -15,6 +15,13 @@ def pwd():
     return os.getcwd()
 
 
+def list2str(data):
+    out = ''
+    for element in data:
+        out += element+' '
+    return out
+
+
 def load_image(path2pic, verbose):
     """
 
