@@ -108,7 +108,7 @@ def spell_word(word, Letters, show):
 
     if show:
         a = animation.ArtistAnimation(f,sample,interval=500,blit=True,repeat_delay=900)
-        plt.imshow(word,'gray_r')
+        plt.imshow(Word,'gray_r')
         plt.show()
     return image, letter_data
 

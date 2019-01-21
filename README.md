@@ -5,23 +5,23 @@ process of creating these programs I'm creating the ``imutils.py`` library of im
 related functions I frequently use. This should be useful, and helpful for developing
 more robust and logical image related projects on a larger scale. 
 
+## Alpha *{Low_Quality Text Rendering}*
+![text](https://raw.githubusercontent.com/TylersDurden/insight/master/TextRendering.png)
+
 ## imutils
 This library of useful image related functions covers quite a lot of utilities that
 makes later programming much more concise. Here's an overview of what imutils holds:
  ________________________
- [**draw_centered_box**] 
+ * draw_centered_box
 -------------------------
- [**draw_grid**]         
+ * draw_grid         
 ------------------------
- [**crop**]
+ * crop
 ------------------------
- [**rendering**]
+ * rendering
 ------------------------
- [**ind2sub/sub2ind**]
+ * ind2sub/sub2ind
 ------------------------
- [**split_color_channels**]
+ * split_color_channels
 ------------------------
 ___________________________
-
-## Alpha *{Low_Quality Text Rendering}*
-![text](https://raw.githubusercontent.com/TylersDurden/insight/master/TextRendering.png)
