@@ -8,6 +8,12 @@ more robust and logical image related projects on a larger scale.
 ## Alpha *{Low_Quality Text Rendering}*
 ![text](https://raw.githubusercontent.com/TylersDurden/insight/master/TextRendering.png)
 
+Pretty Crude, but takes text with any characters (A-Z) and
+renders an image of the equivalent text. It also adds a newline
+if there's enough words in the text input. 
+
+![long words](https://raw.githubusercontent.com/TylersDurden/insight/master/TypeFace.png)
+
 ## imutils
 This library of useful image related functions covers quite a lot of utilities that
 makes later programming much more concise. Here's an overview of what imutils holds:
