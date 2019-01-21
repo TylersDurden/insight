@@ -23,7 +23,9 @@ makes later programming much more concise. Here's an overview of what imutils ho
   ``
   Given (state, boxsize, show) a box is rendered in center of
   the given state in the center with a width and height of 2X
-  boxsize. If show == true, the image is rendered. ``
+  boxsize. If show == true, the image is rendered. 
+  ``
+
 -------------------------
  * ### draw_grid
  
@@ -32,12 +34,14 @@ makes later programming much more concise. Here's an overview of what imutils ho
  Passing true for the show flag will let you preview the 
  new state before returning it.
  ``       
+
 ------------------------
  * ### crop
  
  ``
  Crop and image to the given {x1,y1,x2,y2} window. 
  ``
+
 ------------------------
  * ### rendering
 
@@ -45,6 +49,7 @@ makes later programming much more concise. Here's an overview of what imutils ho
 Passing in an image matrix, a label, and an isColor flag, 
 and image is rendered/plotted and given a generic label. 
  ``
+ 
 ------------------------
  * ### ind2sub/sub2ind
 
@@ -57,6 +62,7 @@ A = [[1,0,2,3],
  ind2sub(3,A) = 2
  sub2ind(3,A) = [2,0]
  ``
+ 
  ------------------------
  * ### split_color_channels
 
@@ -64,5 +70,6 @@ A = [[1,0,2,3],
 Given the input matrix of an image, return a mapping
 of all three [R, G, B] color channels.  
  ``
+
 ------------------------
 ___________________________
