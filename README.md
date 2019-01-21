@@ -27,29 +27,28 @@ makes later programming much more concise. Here's an overview of what imutils ho
 -------------------------
  * draw_grid
  
- ```
+ `
  Overlay a grid of a given density on a state. 
  Passing true for the show flag will let you preview the 
  new state before returning it.
- ```         
+ `         
 ------------------------
  * crop
  
- ```
+ ``
  Crop and image to the given {x1,y1,x2,y2} window. 
- ```
+ ``
 ------------------------
  * rendering
 
-
- ```
+ ``
 Passing in an image matrix, a label, and an isColor flag, 
 and image is rendered/plotted and given a generic label. 
- ```
+ `
 ------------------------
  * ind2sub/sub2ind
 
- ```
+ ``
 Given the Folowwing Matrix: 
 A = [[1,0,2,3],
      [0,3,1,2],
@@ -57,14 +56,13 @@ A = [[1,0,2,3],
      [1,2,0,1]]
  ind2sub(3,A) = 2
  sub2ind(3,A) = [2,0]
- ```
-------------------------
+ ``
+ ------------------------
  * split_color_channels
 
-
- ```
+ ``
 Given the input matrix of an image, return a mapping
 of all three [R, G, B] color channels.  
- ```
+ ``
 ------------------------
 ___________________________
