@@ -27,11 +27,11 @@ makes later programming much more concise. Here's an overview of what imutils ho
 -------------------------
  * ### draw_grid
  
- `
+ ``
  Overlay a grid of a given density on a state. 
  Passing true for the show flag will let you preview the 
  new state before returning it.
- `         
+ ``       
 ------------------------
  * ### crop
  
@@ -44,7 +44,7 @@ makes later programming much more concise. Here's an overview of what imutils ho
  ``
 Passing in an image matrix, a label, and an isColor flag, 
 and image is rendered/plotted and given a generic label. 
- `
+ ``
 ------------------------
  * ### ind2sub/sub2ind
 
